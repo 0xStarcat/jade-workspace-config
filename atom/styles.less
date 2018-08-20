@@ -1,0 +1,68 @@
+@font-size: 1.2em;
+
+/* TREE VIEW */
+html, body, .tree-view, .tab-bar .tab {
+  font-size: @font-size;
+}
+
+.tree-view .list-item {
+  margin: 0.6em 0;
+}
+
+/* Files */
+.tree-view .list-item.file {
+  color: ghostwhite;
+}
+
+/* Folders */
+.tree-view .icon-file-directory {
+  color: deepskyblue;
+}
+
+/* Selected folders and file */
+.tree-view .selected > .header.list-item, .tree-view .list-item.selected {
+    span {
+      color: gold;
+    }
+}
+
+/* Expanded folders and 2nd level folders */
+// .tree-view .directory.status-ignored.expanded.selected {
+//   .header.list-item {
+//
+//     color: pink ;
+//
+//     span {
+//       color: pink;
+//     }
+//   }
+// }
+
+// .tree-view .list-tree .directory.expanded {
+//   .header.list-item {
+//
+//     color: hotpink ;
+//
+//
+//     span {
+//       color: hotpink;
+//     }
+//   }
+//
+//   .selected > .header.list-item {
+//     color: pink;
+//   }
+// }
+
+
+/* TAB BAR */
+
+.tab-bar {
+  .close-icon::before {
+    font-size: 20px;
+  }
+}
+
+.tab-bar .title {
+  font-size: 16px;
+}

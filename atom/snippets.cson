@@ -1,0 +1,13 @@
+'.source.python':
+  'aleColumn':
+    'prefix': 'aleColumn'
+    'body': "sa.Column('${1:column_name}', ${2:sa.Text})$3"
+  'aleTable':
+    'prefix': 'aleTable'
+    'body': "op.create_table('${1:table_name}')$2"
+  'aleDropTable':
+    'prefix': 'aleDropTable'
+    'body': "op.drop_table('${1:table_name}')$2"
+  'aleIndex':
+    'prefix': 'aleIndex'
+    'body': "op.create_index('${1:index_name}', '${2:table_name}', ${3:['columns']}, None, unique=${4:False})$5"

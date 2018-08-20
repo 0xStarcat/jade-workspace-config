@@ -1,0 +1,46 @@
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/bin:$HOME/.local/bin
+
+source $HOME/.aliases
+source $HOME/.zsh-plugins/zsh-git-prompt/zshrc.sh # Zsh git prompt
+
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory notify
+unsetopt beep extendedglob
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/angel/.zshrc'
+
+autoload -Uz compinit
+compinit
+
+# PROMPT
+PS1='%U%B%n@%m%u:%b%~ - %B%b$(git_super_status)
+ %{%F{red}%}<3%{%F{white}%} '
+
+#COMMANDS%*
+
+
+
+# ALIASES
+alias ls='ls --color=auto'
+
+  # Networking
+alias wifi='nmcli dev wifi'
+alias wifi_connect='nmcli device wifi connect'
+
+# End of lines added by compinstall
+
+# EXPORTS
+export TERM=xterm-256color        # for common 256 color terminals (e.g. gnome-terminal)
+export TERM=screen-256color       # for a tmux -2 session (also for screen)
+export TERM=rxvt-unicode-256color # for a colorful rxvt unicode session
+export DIRCOLORTHEME='dircolors.ansi-dark'
+
+# Tilix fix
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+fi

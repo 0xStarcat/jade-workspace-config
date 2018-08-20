@@ -1,0 +1,11 @@
+'body':
+  'ctrl-q': 'pane:close-other-items'
+  'ctrl-shift-q': 'pane:close'
+  'ctrl-alt-shift-q': 'application:quit',
+  'ctrl-shift-alt-p': 'application:show-settings'
+  'ctrl-t': 'pane:split-right-and-copy-active-item',
+  'alt-h': 'window:focus-pane-on-left'
+  'alt-l': 'window:focus-pane-on-right'
+  'alt-j': 'window:focus-pane-on-down'
+  'alt-k': 'window:focus-pane-on-up'
+  'ctrl-alt-shift-S': 'application:show-snippets'
