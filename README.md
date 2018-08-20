@@ -4,4 +4,4 @@
 
 2) [Zsh](./zsh)
 
-3) [I3 window manager](./i3)
+3) [i3 window manager](./i3)

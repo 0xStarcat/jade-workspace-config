@@ -1,5 +1,5 @@
-# I3 Window manager
+# i3 Window manager
 
 1) config
-  - /home/[user]/.i3/config
+  - `/home/[user]/.i3/config`
   - Keyboard shortcuts for i3
