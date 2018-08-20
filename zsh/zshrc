@@ -21,10 +21,6 @@ compinit
 PS1='%U%B%n@%m%u:%b%~ - %B%b$(git_super_status)
  %{%F{red}%}<3%{%F{white}%} '
 
-#COMMANDS%*
-
-
-
 # ALIASES
 alias ls='ls --color=auto'
 
