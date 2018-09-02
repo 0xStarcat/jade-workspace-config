@@ -2,6 +2,21 @@
   'aleColumn':
     'prefix': 'aleColumn'
     'body': "sa.Column('${1:column_name}', ${2:sa.Text})$3"
+  'alePrimaryKey':
+    'prefix': 'alePColumn'
+    'body': "sa.Column('id', sa.Integer, primary_key=True)"
+  'aleTextColumn':
+    'prefix': 'aleTColumn'
+    'body': "sa.Column('${1:column_name}', sa.Text)$2"
+  'aleIntegerColumn':
+    'prefix': 'aleIColumn'
+    'body': "sa.Column('${1:column_name}', sa.Integer)$2"
+  'aleFloatColumn':
+    'prefix': 'aleFlColumn'
+    'body': "sa.Column('${1:column_name}', sa.Float)$2"
+  'aleForeignKeyColumn':
+    'prefix': 'aleFColumn'
+    'body': "sa.Column('${1:column_name}', sa.Integer, sa.ForeignKey('${2:Table}.id'), nullable=${3:False})$4"
   'aleTable':
     'prefix': 'aleTable'
     'body': "op.create_table('${1:table_name}')$2"
@@ -10,4 +25,107 @@
     'body': "op.drop_table('${1:table_name}')$2"
   'aleIndex':
     'prefix': 'aleIndex'
-    'body': "op.create_index('${1:index_name}', '${2:table_name}', ${3:['columns']}, None, unique=${4:False})$5"
+    'body': "op.create_index('${1:index_name}', '${2:table_name}', ['${3:columns}'], None, unique=${4:False})$5"
+
+'.source.js':
+
+  'Pure React Component':
+    'prefix': 'reactPureComponent'
+    'body': """
+import React from 'react'
+import PropTypes from 'prop-types'
+
+const ${1:Component} = props => {
+  return (<div className="${2:classname}"/>)
+}
+
+${1:Component}.propTypes = {
+
+}
+
+export default ${1:Component}
+    """
+
+  'Full React Component':
+    'prefix': 'fullReactComponent',
+    'body': """
+import React from 'react'
+import PropTypes from 'prop-types'
+
+class ${1:Component} extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return (<div className="${2:classname}"/>)
+  }
+
+}
+
+${1:Component}.propTypes = {
+
+}
+
+export default ${1:Component}
+
+"""
+
+  'Connected React Component':
+    'prefix': 'reactConnectedComponent',
+    'body': """
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+
+class ${1:Component} extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return (<div className="${2:classname}"/>)
+  }
+
+}
+
+${1:Component}.propTypes = {
+  dispatch: PropTypes.func
+}
+
+const mapStateToProps = state => {
+  return {
+    store: state
+  }
+}
+
+export default connect(mapStateToProps)(${1:Component})
+
+"""
+
+  'React Component Test':
+    'prefix': 'reactTest'
+    'body': """
+  import React from 'react'
+  import { configure, shallow, mount } from 'enzyme'
+  import sinon from 'sinon'
+  import Adapter from 'enzyme-adapter-react-16'
+  import ${1:Component} from '../index.js'
+  import toJson from 'enzyme-to-json'
+
+  configure({ adapter: new Adapter() })
+
+  describe('${1:Component}', () => {
+    const wrapper = shallow(
+      <${1:Component} />
+    )
+
+    it('renders the component', () => {
+      expect(wrapper.find('${2:Class}').length).toEqual(1)
+    })
+
+    it('renders correctly', () => {
+      expect(toJson(wrapper)).toMatchSnapshot()
+    })
+  })
+  """

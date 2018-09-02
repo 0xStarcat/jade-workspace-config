@@ -1,4 +1,4 @@
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/bin:$HOME/.local/bin
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/bin:$HOME/.local/bin:/home/angel/anaconda3/bin:$PATH
 
 source $HOME/.aliases
 source $HOME/.zsh-plugins/zsh-git-prompt/zshrc.sh # Zsh git prompt
@@ -24,12 +24,6 @@ PS1='%U%B%n@%m%u:%b%~ - %B%b$(git_super_status)
 # ALIASES
 alias ls='ls --color=auto'
 
-  # Networking
-alias wifi='nmcli dev wifi'
-alias wifi_connect='nmcli device wifi connect'
-
-# End of lines added by compinstall
-
 # EXPORTS
 export TERM=xterm-256color        # for common 256 color terminals (e.g. gnome-terminal)
 export TERM=screen-256color       # for a tmux -2 session (also for screen)
@@ -40,3 +34,6 @@ export DIRCOLORTHEME='dircolors.ansi-dark'
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

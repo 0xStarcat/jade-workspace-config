@@ -9,3 +9,5 @@
   'alt-j': 'window:focus-pane-on-down'
   'alt-k': 'window:focus-pane-on-up'
   'ctrl-alt-shift-S': 'application:show-snippets'
+  'ctrl-alt-a': 'editor:select-to-first-character-of-line'
+  'ctrl-alt-e': 'editor:move-to-end-of-screen-line'
