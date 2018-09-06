@@ -37,10 +37,11 @@ set $mod mod4
 # Specific Workspaces for applications
 assign [class="tilix"] 1:Shell
 assign [class="Firefox"] 2:Browser
-assign [class="google-chrome"] 2:Browser
+assign [class="Google-chrome"] 2:Browser
 assign [class="Atom"] 3:Atom
-assign [class="Slack"] 4:Slack
+assign [class="Nautilus"] 4:Files
 assign [class="Boostnote"] 5:Notes
+assign [class="Slack"] 6:Slack
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -68,17 +69,18 @@ bindsym $mod+Return exec tilix
 # open
 bindsym $mod+F1 exec /usr/bin/Encryptr
 
-# open firefox
-bindsym $mod+F2 exec firefox -new-tab about:newtab
+# open browser
+bindsym $mod+F2 mode "$browser_mode"
 
-# open gmail
-bindsym $mod+F3 exec firefox -new-tab https://gmail.com
-
-# Open Slack
-bindsym $mod+F4 exec /usr/bin/slack
+# Open Nautilus
+bindsym $mod+F4 exec nautilus
 
 # Open Boostnote
-bindsym $mod+F6 exec boostnote
+bindsym $mod+F5 exec boostnote
+
+# Open Slack
+bindsym $mod+F6 exec /usr/bin/slack
+
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -151,9 +153,9 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+1 workspace 1:Shell
 bindsym $mod+2 workspace 2:Browser
 bindsym $mod+3 workspace 3:Atom
-bindsym $mod+4 workspace 4:Slack
+bindsym $mod+4 workspace 4:Files
 bindsym $mod+5 workspace 5:Notes
-bindsym $mod+6 workspace 6
+bindsym $mod+6 workspace 6:Slack
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
@@ -199,8 +201,6 @@ mode "$browser_mode" {
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
-
-bindsym $mod+F5 mode "$browser_mode"
 
 bindsym Print exec gnome-screenshot -i
 
