@@ -43,33 +43,33 @@
     'prefix': 'aleIndex'
     'body': "op.create_index('${1:index_name}', '${2:table_name}', ['${3:columns}'], None, unique=${4:False})$5"
 ## - PYTHON - FLASK
-  'flmId':
-    'prefix': 'flmId'
+  'flask migrate primary key column':
+    'prefix': 'flmPKeyCol'
     'body': "id = db.Column(db.Integer, primary_key=True)"
   'flask migrate string column':
     'prefix': 'flmSCol'
-    'body': "${1:column} = db.Column(db.String(${2:128}), index=${3:False}, unique=${4:False})${5:}"
+    'body': "${1:column} = db.Column(db.String(${2:128}), server_default=${3:''}, index=${4:False}, unique=${5:False}, nullable=${6:True})${7:}"
   'flask migrate datetime column':
     'prefix': 'flmDCol'
-    'body': "${1:column} = db.Column(db.DateTime, default=datetime.utcnow)${2:}"
+    'body': "${1:column} = db.Column(db.DateTime, server_default=${2:db.func.current_timestamp()}, nullable=${3:True})${4:}"
   'flask migrate boolean column':
     'prefix': 'flmBCol'
-    'body': "${1:column} = db.Column(db.Boolean, default=${2:False})${3:}"
+    'body': "${1:column} = db.Column(db.Boolean, nullable=${2:True})${3:}"
   'flask migrate text column':
     'prefix': 'flmTCol'
-    'body': "${1:column} = db.Column(db.Text, default=${2:None})${3:}"
+    'body': "${1:column} = db.Column(db.Text, server_default=${2:''}, nullable=${3:True})${4:}"
   'flask migrate float column':
     'prefix': 'flmFCol'
-    'body': "${1:column} = db.Column(db.Float, default=${2:None})${3:}"
+    'body': "${1:column} = db.Column(db.Float, nullable=${2:True})${3:}"
   'flask migrate integer column':
     'prefix': 'flmICol'
-    'body': "${1:column} = db.Column(db.Integer, default=${2:0})${3:}"
+    'body': "${1:column} = db.Column(db.Integer, nullable=${2:True})${3:}"
   'flmRelCol':
     'prefix': 'flmRelCol'
     'body': "${1:Column} = db.relationship('${2:Related_to_model}', backref='${3:reference_key}', lazy='${4:dynamic}')${5:}"
   'flmFKeyCol':
     'prefix': 'flmFkeyCol'
-    'body': "${1:Column} = db.Column('${2:column_name}', db.Integer, db.ForeignKey('${3:reference}.id'))${4:}"
+    'body': "${1:Column} = db.Column('${2:column_name}', db.Integer, db.ForeignKey('${3:reference}.id'), nullable=${4:True})${5:}"
   'flask app import blueprint':
     'prefix': 'flappimpbp'
     'body': """
