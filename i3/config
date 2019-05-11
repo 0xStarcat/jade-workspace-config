@@ -38,6 +38,7 @@ set $mod mod4
 assign [class="tilix"] 1:Shell
 assign [class="Firefox"] 2:Browser
 assign [class="Google-chrome"] 2:Browser
+assign [class="Tor"] 2:Browser
 assign [class="Atom"] 3:Atom
 assign [class="Nautilus"] 4:Files
 assign [class="Boostnote"] 5:Notes

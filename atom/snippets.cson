@@ -76,10 +76,59 @@
 from app.${1:blueprint} import bp as ${1:blueprint}_bp
 app.register_blueprint(${1:blueprint}_bp)
       """
+## - PYTHON - Django
+  'django model field text':
+    'prefix': 'djmodTextCol'
+    'body': 'models.TextField(blank=${1:True}, null=${2:True})${3:}'
+  'django model field boolean':
+    'prefix': 'djmodBoolCol'
+    'body': 'models.BooleanField(blank=${1:True}, null=${2:True})${3:}'
+  'django model field integer':
+    'prefix': 'djmodIntCol'
+    'body': 'models.${1:}IntegerField(blank=${2:True}, null=${3:True})${4:}'
+  'django model field char':
+    'prefix': 'djmodCharCol'
+    'body': 'models.CharField(max_length=${1:}, blank=${2:True}, null=${3:True})${4:}'
+  'django model field date':
+    'prefix': 'djmodDateCol'
+    'body': 'models.DateTimeField(default=${1:}, blank=${2:True}, null=${3:True})${4:}'
+  'django model field decimal':
+    'prefix': 'djmodDecCol'
+    'body': 'models.DecimalField(decimal_places=${1:16}, max_digits=${2:100}, blank=${3:True}, null=${4:True})${5:}'
+  'django model field foreign key':
+    'prefix': 'djmodFKCol'
+    'body': 'models.ForeignKey(${1:Model}, on_delete=models.${2:CASCADE}, null=${3:False})${4:}'
+
+
+
+
 ############# JAVASCRIPT #############
 
 '.source.js':
+  'ImportFrom':
+    'prefix': 'importfrom'
+    'body': "import ${1:Module} from '${2:Path}'"
+  'ThisMethodBind':
+    'prefix': 'thismethodbind'
+    'body': "this.${1:method} = this.${1:method}.bind(this)"
+  'Getter':
+    'prefix': 'getter'
+    'body': """
+      get ${1:attribute}() {
+        return this._${1:attribute}
+      }
+    """
+  'GetSetter':
+    'prefix': 'getsetter'
+    'body': """
+      get ${1:attribute}() {
+        return this._${1:attribute}
+      }
 
+      set ${1:attribute}(${1:attribute}) {
+        this._${1:attribute} = ${1:attribute}
+      }
+    """
   'Pure React Component':
     'prefix': 'reactPureComponent'
     'body': """
@@ -98,7 +147,7 @@ export default ${1:Component}
     """
 
   'Full React Component':
-    'prefix': 'fullReactComponent',
+    'prefix': 'reactComponentFull',
     'body': """
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -180,3 +229,55 @@ export default connect(mapStateToProps)(${1:Component})
     })
   })
   """
+  'ImportStyle':
+    'prefix': 'ImportStyle'
+    'body': "import './style.scss'"
+
+  'PropTypes bool':
+    'prefix': 'propbool'
+    'body': "PropTypes.bool"
+  'PropTypes string':
+    'prefix': 'propstring'
+    'body': "PropTypes.string"
+  'PropTypes number':
+    'prefix': 'propnumber'
+    'body': "PropTypes.number"
+  'PropTypes object':
+    'prefix': 'propobject'
+    'body': "PropTypes.object"
+  'PropTypes array':
+    'prefix': 'proparray'
+    'body': "PropTypes.array"
+  'PropTypes function':
+    'prefix': 'propfunction'
+    'body': "PropTypes.func"
+  'PropTypes oneoftype':
+    'prefix': 'proponeoftype'
+    'body': "PropTypes.OneOfType([${1:1},${2:2}])"
+
+############# VUE #############
+
+'.text.vue':
+  'vueBase':
+    'prefix': 'vueBase'
+    'body': """
+      <template>
+        <div id="${1:Compnent}">
+
+        </div>
+      </template>
+
+      <script>
+        export default {
+          name: '${1:Compnent}',
+          components: {},
+          props: {}
+        }
+      </script>
+
+      <style lang="${2:scss}" scoped>
+        #${1:Component} {
+
+        }
+      </style>
+    """
