@@ -75,13 +75,8 @@ function gpo() {
   git push origin $current_branch
 }
 
-function gc() {
-  git commit -am "$1"
-}
+alias gc="git commit -m"
 
-# function gpo() {
-#   git push origin "$1"
-# }
 
 # Alembic
 alias alup="alembic upgrade head"
