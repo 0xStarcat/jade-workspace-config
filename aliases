@@ -1,5 +1,6 @@
 # System
 ###
+alias ls='ls --color=auto'
 
 alias clean_trash="rm -rf ~/.local/share/Trash/*"
 alias disku="du -hs * | sort -h"

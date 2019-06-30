@@ -1,7 +1,11 @@
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/bin:$HOME/.local/bin:/home/angel/anaconda3/bin:$PATH
+export ZSH="/home/angel/.oh-my-zsh"
 
 source $HOME/.aliases
 source $HOME/.zsh-plugins/zsh-git-prompt/zshrc.sh # Zsh git prompt
+source $HOME/.rvm/scripts/rvm
+
+ZSH_THEME="robbyrussell"
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -23,7 +27,6 @@ PS1='%U%B%n@%m%u:%b%~ - %B%b$(git_super_status)
 
 # ALIASES
 alias ls='ls --color=auto'
-alias suroot='sudo -E -s'
 
 # EXPORTS
 export TERM=xterm-256color        # for common 256 color terminals (e.g. gnome-terminal)
@@ -38,3 +41,10 @@ fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+export PATH="/home/angel/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
