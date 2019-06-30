@@ -1,0 +1,280 @@
+# System
+###
+
+alias clean_trash="rm -rf ~/.local/share/Trash/*"
+alias disku="du -hs * | sort -h"
+
+# pass in the name of the drive (ex: /dev/sdb1)
+function mount_usb() {
+  sudo mount -t ntfs "$1" /media/usb
+}
+
+function unmount_usb() {
+  sudo umount "$1"
+}
+
+##
+# Creates a cloned imaged of the hard drive
+# -  pass in the path to the image (ex: /path/to/backup.img.gz)
+function dd_image() {
+  dd if=/dev/sda conv=sync,noerror bs=64K status=progress | gzip -c > $1
+}
+
+##
+# Restores & the harddrive with the image.
+# - pass in the path to the image (ex: /path/to/backup.img.gz)
+function image_restore() {
+  gunzip -c $1 | dd of=/dev/sda status=progress
+}
+
+# FIND PROCESS
+function p(){
+        ps aux | grep -i $1 | grep -v grep
+}
+
+# KILL ALL BY KEYWORD
+# ex: ka puma # kills all processes with "puma" in the name
+function ka(){
+    ps aux  |  grep -i $1  |  awk '{print $2}'  |  xargs sudo kill -9
+}
+
+# Zsh
+alias subl="atom"
+alias .r=". ~/.zshrc"
+alias i3c="atom ~/.i3/config"
+alias zshc="atom ~/.zshrc"
+alias alic="atom ~/.aliases"
+alias sources="sudo atom /etc/apt/sources.list.d"
+
+function pyenv_create() {
+  pyenv virtualenv $1 $1
+  pyenv global $1
+}
+
+# Apt
+
+alias agu="sudo apt-get update"
+alias agug="sudo apt-get upgrade"
+
+function agi() {
+  sudo apt-get install $1
+}
+
+# Git
+alias gs="git status"
+alias ga="git add -p"
+alias ga.="git add ."
+# alias gpom="git push origin master"
+alias gppm="git push production master"
+
+alias gclean="git clean -f -d"
+
+function gpo() {
+  current_branch="$(git rev-parse --abbrev-ref HEAD)"
+  echo "Pushing to:" $current_branch
+  git push origin $current_branch
+}
+
+function gc() {
+  git commit -am "$1"
+}
+
+# function gpo() {
+#   git push origin "$1"
+# }
+
+# Alembic
+alias alup="alembic upgrade head"
+alias alup1="alembic upgrade +1"
+alias aldown="alembic downgrade base"
+alias aldown1="alembic downgrade -1"
+
+function alr() {
+  alembic revision -m "$1"
+}
+
+# Anaconda / Jupyter
+function condac() {
+  conda create --name "$1"
+}
+
+alias condai="conda info --envs"
+alias jup="jupyter lab"
+
+# Networking
+alias wifi='nmcli dev wifi'
+alias wifi_connect='nmcli device wifi connect'
+alias wifi_disconnect='nmcli dev disconnect wlp1s0'
+
+alias wifi_list='nmcli dev'
+alias wifi_passwords='sudo grep psk= /etc/NetworkManager/system-connections/*'
+
+function wifi_reset() {
+  nmcli radio wifi off
+  nmcli radio wifi on
+}
+
+# Mac address
+
+function mac_random() {
+  sudo ifconfig wlp1s0 down
+  sudo ifconfig wlp1s0 hw ether 02:01:02:03:04:08
+  sudo ifconfig wlp1s0 up
+}
+
+function mac_restore() {
+  sudo ifconfig wlp1s0 down
+  sudo ifconfig wlp1s0 hw ether 18:cf:5e:f3:fc:48
+  sudo ifconfig wlp1s0 up
+}
+
+function mac_set() {
+  sudo ifconfig wlp1s0 down
+  sudo ifconfig wlp1s0 hw ether $1
+  sudo ifconfig wlp1s0 up
+}
+
+# Python
+# alias python="python3.6"
+alias pip="pip3"
+alias venv="source venv/bin/activate"
+alias new_venv="python -m virtualenv venv"
+alias pythonmail="python -m smtpd -n -c DebuggingServer localhost:8025"
+
+# Elasticsearch
+alias elasticsearch="/home/angel/elasticsearch-6.4.0/bin/elasticsearch"
+alias elasticsearchtest="ES_PATH_CONF=/home/angel/elasticsearch-6.4.0/config.test /home/angel/elasticsearch-6.4.0/bin/elasticsearch"
+
+# Servers
+alias server_dot="ssh jade@142.93.11.207"
+alias server_myirlog="ssh myirlog_admin@138.197.38.174"
+
+# Keybase
+
+alias kbc="keybase chat"
+alias kbcr="keybase chat read"
+
+function kbcs() {
+  keybase chat send --private "$1" "$2"
+}
+
+# Dropbox
+
+alias dropbox="~/.dropbox-dist/dropboxd"
+
+# Docker
+function dkc() {
+  docker create $1
+}
+
+function dkbash() {
+  docker exec -it $1 /bin/bash
+}
+
+
+# -- Docker Compose
+alias dkcp="docker-compose"
+alias dkcpup="docker-compose build && docker-compose up --remove-orphans --force-recreate"
+alias dkcpclean="docker-compose stop && docker-compose rm"
+
+# -- Docker Images
+alias dkimg="docker image"
+function dkbimg() {
+  docker build . -t "$1"
+}
+
+# -- Docker Containers
+alias dkconstop="docker stop $(docker ps -a -q)"
+alias dkconrm="docker rm $(docker ps -a -q)"
+alias dkcon="docker container"
+
+# -- Docker Volumes
+alias dkvol="docker volume"
+
+# Flask
+
+alias flaskr="flask run"
+alias flaskdbi="flask db init"
+
+function flaskdbm() {
+  flask db migrate -m "$1"
+}
+
+alias flaskdbu="flask db upgrade"
+alias flaskdbd="flask db downgrade"
+
+# Rachota
+
+alias rachota="java -jar /opt/rachota"
+
+# Skype
+
+alias skype="skypeforlinux"
+
+# USBs / external disks
+
+alias usb="sudo fdisk -l"
+
+function usb_mount() {
+  sudo mount -o uid=$(id -u),gid=$(id -g) $1 /media/usb
+}
+
+function usb_unmount() {
+  sudo fuser -km /media/usb
+  sudo umount /media/usb
+}
+
+function usb_format_exfat() {
+  sudo mkfs.exfat $1
+}
+
+# Jekyll
+
+alias jeks="bundle exec jekyll serve"
+alias jekb="bundle exec jekyll build"
+
+# Bundler
+
+alias be="bundle exec"
+
+# Rails
+
+alias rails_clear_cache="rake tmp:cache:clear"
+
+# Postgres
+
+alias postgres="sudo -u postgres -i"
+alias pgadmin="python3 lib/python3.5/site-packages/pgadmin4/pgAdmin4.py"
+
+# Heroku
+
+alias heroku_rails_console="heroku run rails console"
+
+# Django
+
+alias django="django-admin"
+function django_new() {
+  django-admin startproject $1
+}
+
+alias django_start="python manage.py runserver"
+alias django_shell="python manage.py shell"
+alias django_static="python manage.py collectstatic"
+alias django_test="python manage.py test"
+alias django_migrate="python manage.py migrate"
+function django_loaddata() {
+  python manage.py loaddata $1
+}
+function django_make_migrations() {
+  python manage.py makemigrations $1
+}
+
+function django_startapp() {
+  python manage.py startapp $1
+}
+
+
+alias pym="python manage.py"
+
+alias celery_start="celery -A app worker -l info"
+alias celery_beat="celery -A app beat -l info"
