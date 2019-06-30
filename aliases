@@ -76,12 +76,8 @@ function gpo() {
 }
 
 function gc() {
-  git commit -am "$1"
+  git commit -am '$1'
 }
-
-# function gpo() {
-#   git push origin "$1"
-# }
 
 # Alembic
 alias alup="alembic upgrade head"
