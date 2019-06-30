@@ -281,3 +281,38 @@ export default connect(mapStateToProps)(${1:Component})
         }
       </style>
     """
+
+############# C#Sharp #############
+
+'.source.cs':
+  'public variable':
+    'prefix': 'pvar'
+    'body': 'public ${1:type} ${2:name};${3:}'
+
+  'public static':
+    'prefix': 'pstat'
+    'body': 'public static ${1:type} ${2:name};${3:}'
+
+  'public method':
+    'prefix': 'pmethod'
+    'body': """
+    public ${1:returns} ${2:name}(${3:}) {
+      ${4:}
+    }
+    """
+
+  'private variable':
+    'prefix': 'ppvar'
+    'body': 'private ${1:type} ${2:name};${3:}'
+
+  'private static':
+    'prefix': 'ppstat'
+    'body': 'private static ${1:type} ${2:name};${3:}'
+
+  'private method':
+    'prefix': 'ppmethod'
+    'body': """
+    private ${1:returns} ${2:name}(${3:}) {
+      ${4:}
+    }
+    """
