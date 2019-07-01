@@ -285,6 +285,19 @@ export default connect(mapStateToProps)(${1:Component})
 ############# C#Sharp #############
 
 '.source.cs':
+  'new instance Var':
+    'prefix': 'varnew'
+    'body': '${1:type} ${2:name} = new ${1:type}(${3:});${4:}'
+
+  'method':
+    'prefix': 'method'
+    'body': """
+    ${1:returns} ${2:name}(${3:}) {
+      ${4:}
+    }
+    """
+
+
   'public variable':
     'prefix': 'pvar'
     'body': 'public ${1:type} ${2:name};${3:}'
