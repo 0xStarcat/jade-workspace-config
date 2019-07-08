@@ -8,7 +8,7 @@ alias ls='ls --color=auto'
 # Creates a cloned imaged of the hard drive
 # -  pass in the path to the image (ex: /path/to/backup.img.gz)
 function dd_image() {
-  dd if=/dev/sda conv=sync,noerror bs=64K status=progress | gzip -c > $1
+  sudo dd if=/dev/sda conv=sync,noerror bs=64K status=progress | gzip -c > $1
 }
 
 ##
