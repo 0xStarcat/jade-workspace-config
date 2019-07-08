@@ -1,0 +1,15 @@
+#!/bin/bash
+
+case "$1" in
+  hibernate)
+    # put commands to run on hibernation here
+    ;;
+  thaw)
+    xrandr --output eDP1 --off; xrandr --output eDP1 --auto;
+  suspend)
+    # put commands to run on suspend here
+    ;;
+  resume)
+    # put commands to run when returning from suspension
+    ;;
+esac

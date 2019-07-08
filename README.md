@@ -34,8 +34,12 @@ echo "source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZD
 1) Create a hardlink between the `aliases` file and `~/.aliases` with `ln aliases ~/.aliases`
 2) Repeat with the appropriate zsh file `ln zshrc ~/.zshrc`
 3) (linux) hardlink compton.conf `ln .compton.conf ~/.compton.conf`
-4) (linux) install "xfce4-power-manager" `apt-get install xfce4-power-manager`
-5) (linux) use feh for rotating wallpaper `apt-get install feh` with pictures in folder `~/Pictures/wallpapers` and hardlink `ln fehbg-rotate ~/.fehbg-rotate && chmod 777 ~/.fehbg-rotate`
+4) (linux) hardlink .xinitrc `ln xinitrc ~/.xinitrc`
+5) (linux) install "xfce4-power-manager" `apt-get install xfce4-power-manager`
+6) (linux) install light-locker `apt-get install light-locker`
+7) (linux) use feh for rotating wallpaper `apt-get install feh` with pictures in folder `~/Pictures/wallpapers` and hardlink `ln fehbg-rotate ~/.fehbg-rotate && chmod 777 ~/.fehbg-rotate`
+8) (linux) add `00_refresh_screen_on_thaw` script to `/etc/pm/sleep.d`
+
 
 
 ## Backup / Restoring
@@ -44,7 +48,9 @@ https://www.linux.com/learn/full-metal-backup-using-dd-command
 
 1) Backup to .tar file
 ```
-sudo dd if=/dev/sda conv=sync,noerror bs=64K status=progress | gzip -c  > angel_backup.img.gz status=progress
+# can take about an hour
+# canceling in the middle with ctrl+c is fine.
+sudo dd if=/dev/sda conv=sync,noerror bs=64K status=progress | gzip -c  > angel_backup.img.gz
 
 ```
 

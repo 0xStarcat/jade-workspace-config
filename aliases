@@ -2,18 +2,7 @@
 ###
 alias ls='ls --color=auto'
 
-alias clean_trash="rm -rf ~/.local/share/Trash/*"
-alias disku="du -hs * | sort -h"
-alias power="xfce4-power-manager-settings" # manages power settings
 
-# pass in the name of the drive (ex: /dev/sdb1)
-function mount_usb() {
-  sudo mount -t ntfs "$1" /media/usb
-}
-
-function unmount_usb() {
-  sudo umount "$1"
-}
 
 ##
 # Creates a cloned imaged of the hard drive
@@ -40,6 +29,22 @@ function ka(){
     ps aux  |  grep -i $1  |  awk '{print $2}'  |  xargs sudo kill -9
 }
 
+# Linux Specific
+
+alias clean_trash="rm -rf ~/.local/share/Trash/*"
+alias refresh_screen='xrandr --output eDP1 --off; xrandr --output eDP1 --auto;'
+alias power="xfce4-power-manager-settings" # manages power settings
+
+alias disku="du -hs * | sort -h"
+
+# pass in the name of the drive (ex: /dev/sdb1)
+function mount_usb() {
+  sudo mount -t ntfs "$1" /media/usb
+}
+
+function unmount_usb() {
+  sudo umount "$1"
+}
 # Zsh
 alias subl="atom"
 alias .r=". ~/.zshrc"

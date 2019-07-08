@@ -51,6 +51,8 @@ floating_modifier $mod
 exec --no-startup-id i3-msg 'workspace 1:Shell; exec tilix'
 exec --no-startup-id compton --config ~/.compton.conf
 exec --no-startup-id ~/.fehbg-rotate
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id xss-lock i3exit lock
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
@@ -64,7 +66,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 bindsym $mod+z exec xterm -e "atom ~/.i3/config"
 
 # Lock after inactivity
-exec_always --no-startup-id xautolock -time 5
+# exec_always --no-startup-id xautolock -time 5
 
 # start zoom magnifying glass
 bindsym $mod+z= exec vmg
