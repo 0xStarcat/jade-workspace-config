@@ -36,3 +36,25 @@ echo "source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZD
 3) (linux) hardlink compton.conf `ln .compton.conf ~/.compton.conf`
 4) (linux) install "xfce4-power-manager" `apt-get install xfce4-power-manager`
 5) (linux) use feh for rotating wallpaper `apt-get install feh` with pictures in folder `~/Pictures/wallpapers` and hardlink `ln fehbg-rotate ~/.fehbg-rotate && chmod 777 ~/.fehbg-rotate`
+
+
+## Backup / Restoring
+
+https://www.linux.com/learn/full-metal-backup-using-dd-command
+
+1) Backup to .tar file
+```
+sudo dd if=/dev/sda conv=sync,noerror bs=64K status=progress | gzip -c  > angel_backup.img.gz status=progress
+
+```
+
+2) Move the image into a separate device (portable harddrive, cloud storage, etc)
+
+3) Restore by booting in recovery mode into a root terminal and running:
+
+```
+# mount disk first
+mount /dev/sdb /mnt
+gunzip -c /PATH/TO/DRIVE/backup_image.img.gz | dd of=/dev/sda status=progress
+
+```
