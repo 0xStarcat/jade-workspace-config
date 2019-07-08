@@ -49,6 +49,8 @@ floating_modifier $mod
 
 # workspace programs start
 exec --no-startup-id i3-msg 'workspace 1:Shell; exec tilix'
+exec --no-startup-id compton --config ~/.compton.conf
+exec --no-startup-id ~/.fehbg-rotate
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute

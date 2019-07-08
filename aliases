@@ -4,6 +4,7 @@ alias ls='ls --color=auto'
 
 alias clean_trash="rm -rf ~/.local/share/Trash/*"
 alias disku="du -hs * | sort -h"
+alias power="xfce4-power-manager-settings" # manages power settings
 
 # pass in the name of the drive (ex: /dev/sdb1)
 function mount_usb() {

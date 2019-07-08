@@ -80,6 +80,6 @@ eval "$(pyenv virtualenv-init -)"
 source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 
 
-source $HOME/.aliases
 # source $HOME/.zsh-plugins/zsh-git-prompt/zshrc.sh # Zsh git prompt
 source $ZSH/oh-my-zsh.sh
+source $HOME/.aliases
