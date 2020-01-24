@@ -2,7 +2,7 @@
 ###
 alias ls='ls --color=auto'
 
-
+alias lsl='ls -lh'
 
 ##
 # Creates a cloned imaged of the hard drive
@@ -51,7 +51,7 @@ alias .r=". ~/.zshrc"
 alias i3c="atom ~/.i3/config"
 alias zshc="atom ~/.zshrc"
 alias alic="atom ~/.aliases"
-alias sources="sudo atom /etc/apt/sources.list.d"
+alias sources="sudo atom /etc/apt"
 
 function pyenv_create() {
   pyenv virtualenv $1 $1
@@ -209,6 +209,10 @@ alias flaskdbd="flask db downgrade"
 
 alias rachota="java -jar /opt/rachota"
 
+# Signal Desktop
+
+alias signal="sudo signal-desktop --no-sandbox"
+
 # Skype
 
 alias skype="skypeforlinux"
@@ -241,7 +245,7 @@ alias be="bundle exec"
 
 # Rails
 
-alias rails_clear_cache="rake tmp:cache:clear"
+alias rails_clear_cache="bundle exec rake tmp:cache:clear"
 
 # Postgres
 
@@ -280,3 +284,16 @@ alias pym="python manage.py"
 
 alias celery_start="celery -A app worker -l info"
 alias celery_beat="celery -A app beat -l info"
+
+
+# Contentful CLI
+
+function contentful_extension() {
+  npx @contentful/create-contentful-extension $1
+}
+
+function c++() {
+  filename=$1
+  out=".out"
+  g++ -o ${filename/.cpp/$out} $filename
+}

@@ -39,7 +39,8 @@ assign [class="tilix"] 1:Shell
 assign [class="Firefox"] 2:Browser
 assign [class="Google-chrome"] 2:Browser
 assign [class="Tor"] 2:Browser
-assign [class="Atom"] 3:Atom
+assign [class="Atom"] 3:Code
+assign [class="Code"] 3:Code
 assign [class="Nautilus"] 4:Files
 assign [class="Boostnote"] 5:Notes
 assign [class="Slack"] 6:Slack
@@ -79,6 +80,9 @@ bindsym $mod+F1 exec /usr/bin/Encryptr
 
 # open browser
 bindsym $mod+F2 mode "$browser_mode"
+
+# open code
+bindsym $mod+F3 mode "$code_mode"
 
 # Open Nautilus
 bindsym $mod+F4 exec nautilus
@@ -160,7 +164,7 @@ bindsym $mod+minus scratchpad show
 # switch to workspace
 bindsym $mod+1 workspace 1:Shell
 bindsym $mod+2 workspace 2:Browser
-bindsym $mod+3 workspace 3:Atom
+bindsym $mod+3 workspace 3:Code
 bindsym $mod+4 workspace 4:Files
 bindsym $mod+5 workspace 5:Notes
 bindsym $mod+6 workspace 6:Slack
@@ -172,7 +176,7 @@ bindsym $mod+0 workspace 10
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1:Shell
 bindsym $mod+Shift+2 move container to workspace 2:Browser
-bindsym $mod+Shift+3 move container to workspace 3:Atom
+bindsym $mod+Shift+3 move container to workspace 3:Code
 bindsym $mod+Shift+4 move container to workspace 4:Files
 bindsym $mod+Shift+5 move container to workspace 5:Notes
 bindsym $mod+Shift+6 move container to workspace 6:Slack
@@ -200,6 +204,16 @@ mode "$display_mode" {
 }
 
 bindsym $mod+m mode "$display_mode"
+
+set $code_mode Code (a) Atom, (c) Visual Studio
+mode "$code_mode" {
+  bindsym a exec atom .
+  bindsym c exec code .
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
 
 set $browser_mode Browser (f) Firefox, (c) Chrome
 mode "$browser_mode" {
