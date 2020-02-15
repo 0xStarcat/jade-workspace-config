@@ -247,6 +247,10 @@ alias be="bundle exec"
 
 alias rails_clear_cache="bundle exec rake tmp:cache:clear"
 
+alias rspec="bundle exec rspec"
+
+alias rails_webpack="./bin/webpack-dev-server"
+
 # Postgres
 
 alias postgres="sudo -u postgres -i"
