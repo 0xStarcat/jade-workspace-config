@@ -4,6 +4,8 @@ alias ls='ls --color=auto'
 
 alias lsl='ls -lh'
 
+alias du5='du -a | sort -n -r | head -n 5'
+
 ##
 # Creates a cloned imaged of the hard drive
 # -  pass in the path to the image (ex: /path/to/backup.img.gz)
@@ -225,6 +227,10 @@ function usb_mount() {
   sudo mount -o uid=$(id -u),gid=$(id -g) $1 /media/usb
 }
 
+// mounting an ISO to a dir in /mnt
+
+sudo mount -t auto -o loop /path/to/.iso /mnt/iso/
+
 function usb_unmount() {
   sudo fuser -km /media/usb
   sudo umount /media/usb
@@ -248,7 +254,7 @@ alias be="bundle exec"
 alias rails_clear_cache="bundle exec rake tmp:cache:clear"
 
 alias rspec="bundle exec rspec"
-
+alias rake="bundle exec rake"
 alias rails_webpack="./bin/webpack-dev-server"
 
 # Postgres
