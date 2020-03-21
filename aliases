@@ -4,6 +4,7 @@ alias ls='ls --color=auto'
 
 alias lsl='ls -lh'
 
+
 ##
 # Creates a cloned imaged of the hard drive
 # -  pass in the path to the image (ex: /path/to/backup.img.gz)
@@ -35,7 +36,14 @@ alias clean_trash="rm -rf ~/.local/share/Trash/*"
 alias refresh_screen='xrandr --output eDP1 --off; xrandr --output eDP1 --auto;'
 alias power="xfce4-power-manager-settings" # manages power settings
 
+# disk usage & size
+
 alias disku="du -hs * | sort -h"
+
+# top 5 / top 10
+alias du5='du -a | sort -n -r | head -n 5'
+alias du10='du -a | sort -n -r | head -n 10'
+
 
 # pass in the name of the drive (ex: /dev/sdb1)
 function mount_usb() {
@@ -48,10 +56,10 @@ function unmount_usb() {
 # Zsh
 alias subl="atom"
 alias .r=". ~/.zshrc"
-alias i3c="atom ~/.i3/config"
-alias zshc="atom ~/.zshrc"
-alias alic="atom ~/.aliases"
-alias sources="sudo atom /etc/apt"
+alias i3c="code ~/.i3/config"
+alias zshc="code ~/.zshrc"
+alias alic="code ~/.aliases"
+alias sources="sudo code /etc/apt"
 
 function pyenv_create() {
   pyenv virtualenv $1 $1
@@ -225,6 +233,10 @@ function usb_mount() {
   sudo mount -o uid=$(id -u),gid=$(id -g) $1 /media/usb
 }
 
+# mounting an ISO to a dir in /mnt
+
+# sudo mount -t auto -o loop /path/to/.iso /mnt/iso/
+
 function usb_unmount() {
   sudo fuser -km /media/usb
   sudo umount /media/usb
@@ -248,7 +260,7 @@ alias be="bundle exec"
 alias rails_clear_cache="bundle exec rake tmp:cache:clear"
 
 alias rspec="bundle exec rspec"
-
+alias rake="bundle exec rake"
 alias rails_webpack="./bin/webpack-dev-server"
 
 # Postgres

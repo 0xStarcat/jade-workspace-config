@@ -1,0 +1,35 @@
+{
+  "window.zoomLevel": 1,
+  "workbench.colorTheme": "monokai-chacoral(HC)",
+  "editor.formatOnSave": true,
+  "C_Cpp.updateChannel": "Insiders",
+  "editor.fontSize": 16,
+  "editor.tabSize": 2,
+  "clang-format.language.javascript.enable": false,
+  "clang-format.language.typescript.enable": false,
+  "clang-format.style": "Google",
+  "editor.detectIndentation": false,
+  "C_Cpp.intelliSenseEngine": "Tag Parser",
+  "ruby.rubocop.onSave": true,
+  "rufo.exe": "rufo", // can be an absolute path
+  "rufo.useBundler": false,
+  "ruby.format": "rubocop",
+  "editor.formatOnSaveTimeout": 5000,
+  "vscode-erb-beautify.keepBlankLines": 1,
+  "workbench.editor.limit.enabled": true,
+  "workbench.editor.limit.value": 5, // The maximum number of open editors (10 by default).
+  "files.associations": {
+    "*.erb": "erb",
+    "**.rb.erb": "plaintext",
+    "**.js.erb": "plaintext"
+  },
+  "beautify.ignore": [
+    "*.scss"
+  ],
+  "[ruby]": {
+    "editor.defaultFormatter": "misogi.ruby-rubocop"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+}

@@ -1,0 +1,31 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+  {
+    "key": "ctrl+alt+s",
+    "command": "extension.CompileRun"
+  },
+  {
+    "key": "f6",
+    "command": "-extension.CompileRun"
+  },
+  {
+    "key": "shift+meta+w",
+    "command": "workbench.action.quit"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "-workbench.action.quit"
+  },
+  {
+    "key": "meta+q",
+    "command": "workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "-workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "workbench.action.closeAllEditors"
+  }
+]

@@ -1,0 +1,168 @@
+{
+  /* prettier-ignore */
+  // Place your snippets for javascript here. Each snippet is defined under a snippet name and has a prefix, body and 
+  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+  // same ids are connected.
+  // Example:
+  // "Print to console": {
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+  "ImportFrom": {
+    "prefix": "importfrom",
+    "body": [
+      "import ${1:Module} from '${2:Path}'"
+    ]
+  },
+  "ThisMethodBind": {
+    "prefix": "thismethodbind",
+    "body": [
+      "this.${1:method} = this.${1:method}.bind(this)"
+    ]
+  },
+  "PropTypes bool": {
+    "prefix": "propbool",
+    "body": [
+      "PropTypes.bool"
+    ]
+  },
+  "PropTypes string": {
+    "prefix": "propstring",
+    "body": [
+      "PropTypes.string"
+    ]
+  },
+  "PropTypes number": {
+    "prefix": "propnumber",
+    "body": [
+      "PropTypes.number"
+    ]
+  },
+  "PropTypes object": {
+    "prefix": "propobject",
+    "body": [
+      "PropTypes.object"
+    ]
+  },
+  "PropTypes array": {
+    "prefix": "proparray",
+    "body": [
+      "PropTypes.array"
+    ]
+  } 
+	"PropTypes function": {
+    "prefix": "propfunction",
+    "body": [
+      "PropTypes.func"
+    ]
+  }
+	"PropTypes oneoftype": {
+    "prefix": "proponeoftype",
+    "body": [
+      "PropTypes.oneOfType([${1:1},${2:2}])"
+    ]
+  }
+	"Pure React Component": {
+    "prefix": "reactPureComponent",
+    "description": "Creates a functioinal react component",
+    "body": [
+      "import React from 'react'",
+      "import PropTypes from 'prop-types'",
+      "",
+      "const ${1:Component} = props => {",
+			"	return (<div className='${2:classname}'/>)"
+			"}",
+      "",
+      "${1:Component}.propTypes = {}",
+      "${1:Component}.defaultProps = {}",
+      "",
+      "export default ${1:Component}",
+    ]
+  },
+  "Hook React Component": {
+    "prefix": "reactHookComponent",
+    "description": "",
+    "body": [
+      "import React, { useState } from 'react'",
+      "import PropTypes from 'prop-types'",
+      "",
+      "",
+      "const ${1:Component} = props => {",
+      "  const [count, setCount] = useState(0);",
+      "",
+			"	return (",
+			"  	<div className='${2:className}'>",
+			"		<p>You clicked {count} times</p>",
+			"		<button onClick={() => setCount(count + 1)}>Click me</button>",
+			"  	</div>",
+			"	)",
+      "}",
+      "",
+      "${1:Component}.propTypes = {",
+      "",
+      "}",
+      "${1:Component}.defaultProps = {}",
+      "",
+      "export default ${1:Component}"
+    ]
+  },
+  "Full React Component": {
+    "prefix": "reactComponentFull",
+    "description": "Creates a full react component",
+    "body": [
+			"import React from 'react'
+			"import PropTypes from 'prop-types'
+		"",
+      "class ${1:Component} extends React.Component {",
+			"	constructor(props) {",
+			"		super(props)",
+			"	}",
+      "",
+			"	render() {
+			"		return (<div className='${2:classname}'/>)",
+			"	}",
+      "",
+      "}",
+      "",
+      "${1:Component}.propTypes = {",
+      "",
+      "}",
+      "${1:Component}.defaultProps = {}",
+      "",
+			"export default ${1:Component}	",
+    ]
+  },
+  "SetupRailsClass": {
+    "prefix": "setupRailsClass",
+    "description": "Sets up class import and initialize for justworks rails js.",
+    "body": [
+      "import {",
+      "  maybeInitializeClassAll,",
+      "  onDomLoaded",
+      "} from '../../../../${1}app/assets/javascripts/utils/InitializerUtils';",
+      "",
+      "const SELECTOR = '${2}';",
+      "",
+      "",
+      "class Komponent {",
+      "  constructor(el) {",
+      "    this.el = el;",
+      "    console.log(this.el)",
+      "  }",
+      "}",
+      "",
+      "export default Komponent;",
+      "",
+      "const initialize = () => {",
+      "  const el = document.querySelectorAll(SELECTOR);",
+      "  maybeInitializeClassAll(el, Komponent);",
+      "};
+      "",
+      "onDomLoaded(initialize);"
+    ]
+  }
