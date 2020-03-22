@@ -24,16 +24,23 @@ fc-list # verifies installation
 (finally, set the tilix font in your profile to Meslo)
 
 - download plugins
-- `git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions`
+```
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+echo "source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+```
 
 ```
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 echo "source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 ```
 
+- add command to tilix to start zsh on new shell in Preferences > Profile (defualt) > Command
+
 ## [i3 window manager](./i3)
 
 ### Setup
+
+- Setup the i3 WM to load on login at (if using debian w/ gdm3) the login screen by clicking on the cog (settings icon) before login and selecting "i3" 
 
 1. Create a hardlink between the `aliases` file and `~/.aliases` with `ln aliases ~/.aliases`
 2. Repeat with the appropriate zsh file `ln zshrc ~/.zshrc`

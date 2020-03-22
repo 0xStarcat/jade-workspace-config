@@ -54,6 +54,9 @@ exec --no-startup-id compton --config ~/.compton.conf
 exec --no-startup-id ~/.fehbg-rotate
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xss-lock i3exit lock
+# keys for override logitech keyboard function keys
+i3-msg exec xmodmap "keycode 166 = F1"
+i3-msg exec xmodmap -e "keycode 180 = F2"
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
@@ -260,20 +263,22 @@ bar {
 
 # Shutdown / Restart / Suspend computer
 
-set $mode_system System ($mod+Escape) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-mode "$mode_system" {
-    bindsym $mod+Escape exec --no-startup-id i3exit lock, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+bindsym Mod1+Control+Delete mode "$mode_system"
+
+set $mode_system System (Mod1+Control+Delete) Exit (L)ogout, (R)eboot, (Shift+S) Poweroff
+# Create Log out, Reboot, Poweroff bindings
+mode "$mode_system" {
+        bindsym r exec systemctl reboot
+        bindsym l exit
+        bindsym Shift+S exec systemctl poweroff
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
-bindsym $mod+Escape mode "$mode_system"
+
+
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a

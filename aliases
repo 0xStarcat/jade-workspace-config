@@ -4,10 +4,7 @@ alias ls='ls --color=auto'
 
 alias lsl='ls -lh'
 
-<<<<<<< HEAD
-=======
 alias du5='du -a | sort -n -r | head -n 5'
->>>>>>> 3a14585bf5193db5a16e7e566a140043d98e713a
 
 ##
 # Creates a cloned imaged of the hard drive
@@ -237,15 +234,9 @@ function usb_mount() {
   sudo mount -o uid=$(id -u),gid=$(id -g) $1 /media/usb
 }
 
-<<<<<<< HEAD
 # mounting an ISO to a dir in /mnt
 
 # sudo mount -t auto -o loop /path/to/.iso /mnt/iso/
-=======
-// mounting an ISO to a dir in /mnt
-
-sudo mount -t auto -o loop /path/to/.iso /mnt/iso/
->>>>>>> 3a14585bf5193db5a16e7e566a140043d98e713a
 
 function usb_unmount() {
   sudo fuser -km /media/usb
