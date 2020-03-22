@@ -24,6 +24,7 @@ fc-list # verifies installation
 (finally, set the tilix font in your profile to Meslo)
 
 - download plugins
+
 ```
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 echo "source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
@@ -40,12 +41,12 @@ echo "source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZD
 
 ### Setup
 
-- Setup the i3 WM to load on login at (if using debian w/ gdm3) the login screen by clicking on the cog (settings icon) before login and selecting "i3" 
+- Setup the i3 WM to load on login at (if using debian w/ gdm3) the login screen by clicking on the cog (settings icon) before login and selecting "i3"
 
 1. Create a hardlink between the `aliases` file and `~/.aliases` with `ln aliases ~/.aliases`
 2. Repeat with the appropriate zsh file `ln zshrc ~/.zshrc`
 3. (linux) hardlink compton.conf `ln .compton.conf ~/.compton.conf`
-4. (linux) hardlink .xinitrc `ln xinitrc ~/.xinitrc`
+4. (linux) add tilix config back in `dconf load /com/gexperts/Tilix/ < tilix.dconf`
 5. (linux) install "xfce4-power-manager" `apt-get install xfce4-power-manager`
 6. (linux) install light-locker `apt-get install light-locker`
 7. (linux) use feh for rotating wallpaper `apt-get install feh` with pictures in folder `~/Pictures/wallpapers` and hardlink `ln fehbg-rotate ~/.fehbg-rotate && chmod 777 ~/.fehbg-rotate`
