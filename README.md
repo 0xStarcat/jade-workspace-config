@@ -2,6 +2,8 @@
 
 ## Tilix https://gnunn1.github.io/tilix-web/
 
+- to dump the tilix config to a file, run: `dconf dump /com/gexperts/Tilix/ > tilix.dconf`
+
 ## [VSCode](./vscode/)
 
 ## [Zsh](./zsh)

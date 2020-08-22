@@ -55,8 +55,8 @@ exec --no-startup-id ~/.fehbg-rotate
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xss-lock i3exit lock
 # keys for override logitech keyboard function keys
-exec --no-startup-id i3-msg exec xmodmap "keycode 166 = F1"
-exec --no-startup-id i3-msg exec xmodmap -e "keycode 180 = F2"
+# exec --no-startup-id i3-msg exec xmodmap "keycode 166 = F1"
+# exec --no-startup-id i3-msg exec xmodmap -e "keycode 180 = F2"
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
