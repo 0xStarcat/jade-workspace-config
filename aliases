@@ -33,9 +33,12 @@ function ka(){
 
 # Linux Specific
 
+alias rm="rm -i"
+alias rmf="rm -rf -i"
 alias clean_trash="rm -rf ~/.local/share/Trash/*"
 alias refresh_screen='xrandr --output eDP1 --off; xrandr --output eDP1 --auto;'
 alias power="xfce4-power-manager-settings" # manages power settings
+alias df="df -h"
 
 # disk usage & size
 
