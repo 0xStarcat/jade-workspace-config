@@ -1,3 +1,9 @@
+## IMPORTANT
+# On a desktop w/ an nvidia GPU that wasn't supported in debian 10 main repo
+# https://www.reddit.com/r/debian/comments/f7a5eu/how_to_install_nvidia_drivers/
+
+
+
 # System
 ###
 alias ls='ls --color=auto'
@@ -60,10 +66,10 @@ function unmount_usb() {
 # Zsh
 alias subl="atom"
 alias .r=". ~/.zshrc"
-alias i3c="code ~/.i3/config"
+alias i3c="code ~/.config/i3/config"
 alias zshc="code ~/.zshrc"
 alias alic="code ~/.aliases"
-alias sources="sudo code /etc/apt"
+alias sources="sudo nano /etc/apt/sources.list"
 
 function pyenv_create() {
   pyenv virtualenv $1 $1
@@ -127,6 +133,14 @@ function wifi_reset() {
   nmcli radio wifi off
   nmcli radio wifi on
 }
+
+
+alias bluetooth_scan="hcitool scan"
+
+# KEYS
+
+## RESET = setxkbmap
+## SET = xmodmap ~/.xmodmap
 
 # Mac address
 
@@ -317,3 +331,6 @@ function c++() {
   out=".out"
   g++ -o ${filename/.cpp/$out} $filename
 }
+
+
+
