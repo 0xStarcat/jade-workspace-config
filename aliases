@@ -1,16 +1,24 @@
-## IMPORTANT
-# On a desktop w/ an nvidia GPU that wasn't supported in debian 10 main repo
-# https://www.reddit.com/r/debian/comments/f7a5eu/how_to_install_nvidia_drivers/
-
-
-
 # System
 ###
 alias ls='ls --color=auto'
 
 alias lsl='ls -lh'
 
-alias du5='du -a | sort -n -r | head -n 5'
+funtion tar() {
+  tar xvzf $1
+}
+
+# Audio
+
+alias audio=pavucontrol
+alias mixer=alsamixer -c 0
+
+# Redis
+
+alias redis_stop="systemctl stop redis"
+alias redis_start="systemctl start redis"
+alias redis_status="systemctl status redis"
+
 
 ##
 # Creates a cloned imaged of the hard drive
@@ -37,14 +45,17 @@ function ka(){
     ps aux  |  grep -i $1  |  awk '{print $2}'  |  xargs sudo kill -9
 }
 
+function check_port() {
+  sudo lsof -i TCP:$1 | grep LISTEN
+}
+
 # Linux Specific
 
-alias rm="rm -i"
-alias rmf="rm -rf -i"
 alias clean_trash="rm -rf ~/.local/share/Trash/*"
 alias refresh_screen='xrandr --output eDP1 --off; xrandr --output eDP1 --auto;'
 alias power="xfce4-power-manager-settings" # manages power settings
-alias df="df -h"
+alias rmrf="rm -rf -i"
+alias rmi="rm -i"
 
 # disk usage & size
 
@@ -69,7 +80,7 @@ alias .r=". ~/.zshrc"
 alias i3c="code ~/.config/i3/config"
 alias zshc="code ~/.zshrc"
 alias alic="code ~/.aliases"
-alias sources="sudo nano /etc/apt/sources.list"
+alias sources="sudo code /etc/apt"
 
 function pyenv_create() {
   pyenv virtualenv $1 $1
@@ -89,6 +100,8 @@ function agi() {
 alias gs="git status"
 alias ga="git add -p"
 alias ga.="git add ."
+alias gm="git merge"
+alias gplo="git pull origin"
 # alias gpom="git push origin master"
 alias gppm="git push production master"
 
@@ -101,7 +114,7 @@ function gpo() {
 }
 
 alias gc="git commit -m"
-
+alias gck="git checkout"
 
 # Alembic
 alias alup="alembic upgrade head"
@@ -125,6 +138,7 @@ alias jup="jupyter lab"
 alias wifi='nmcli dev wifi'
 alias wifi_connect='nmcli device wifi connect'
 alias wifi_disconnect='nmcli dev disconnect wlp1s0'
+alias dns_servers='sudo nano /etc/dhcp/dhclient.conf'
 
 alias wifi_list='nmcli dev'
 alias wifi_passwords='sudo grep psk= /etc/NetworkManager/system-connections/*'
@@ -133,14 +147,6 @@ function wifi_reset() {
   nmcli radio wifi off
   nmcli radio wifi on
 }
-
-
-alias bluetooth_scan="hcitool scan"
-
-# KEYS
-
-## RESET = setxkbmap
-## SET = xmodmap ~/.xmodmap
 
 # Mac address
 
@@ -280,7 +286,8 @@ alias rails_clear_cache="bundle exec rake tmp:cache:clear"
 alias rspec="bundle exec rspec"
 alias rake="bundle exec rake"
 alias rails_webpack="./bin/webpack-dev-server"
-
+alias rails_keys="EDITOR=\"code --wait\" bin/rails credentials:edit"
+alias sidekiq="bundle exec sidekiq"
 # Postgres
 
 alias postgres="sudo -u postgres -i"
@@ -332,5 +339,20 @@ function c++() {
   g++ -o ${filename/.cpp/$out} $filename
 }
 
+# Mainframing 
+
+alias tk4="cd ~/tk4 && ./mvs"
+alias hercules="cd /opt/hercules-3.13 && hercules"
+alias 3270="x3270 127.0.0.1:3270"
 
 
+
+# Wordpress
+
+
+# if you have bitnami, go to the directory of your wordpress and run ./manager-linux-x64.run
+
+
+# Unity
+
+alias unity=/home/angel/Unity/Hub/Editor/2019.4.15f1/Editor/Unity
