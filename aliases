@@ -114,7 +114,7 @@ function gpo() {
 }
 
 alias gc="git commit -m"
-alias gck="git checkout"
+alias gch="git checkout"
 
 # Alembic
 alias alup="alembic upgrade head"
