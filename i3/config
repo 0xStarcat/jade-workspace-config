@@ -41,9 +41,11 @@ assign [class="Google-chrome"] 2:Browser
 assign [class="Tor"] 2:Browser
 assign [class="Atom"] 3:Code
 assign [class="Code"] 3:Code
-assign [class="Nautilus"] 4:Files
+assign [class="Unity"] 4:Unity
+assign [class="Boostnote"] 5:Notes
+assign [class="Joplin"] 5:Notes
 assign [class="Slack"] 6:Slack
-assign [class="Joplin"] 9:Notes
+assign [class="Nautilus"] 7:Files
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -79,7 +81,7 @@ bindsym $mod+z= exec vmg
 bindsym $mod+Return exec tilix
 
 # open
-bindsym $mod+F1 exec /usr/bin/Encryptr
+bindsym $mod+F1 exec /usr/bin/bitwarden
 
 # open browser
 bindsym $mod+F2 mode "$browser_mode"
@@ -87,14 +89,18 @@ bindsym $mod+F2 mode "$browser_mode"
 # open code
 bindsym $mod+F3 mode "$code_mode"
 
-# Open Nautilus
-bindsym $mod+F4 exec nautilus
+# Open Unity
+bindsym $mod+F4 exec /home/angel/Unity/Hub/Editor/2019.4.15f1/Editor/Unity
+
+# Open Notes
+# bindsym $mod+F5 exec boostnote
+bindsym $mod+F5 exec i3-msg "workspace 5:Notes"; exec tilix;
 
 # Open Slack
 bindsym $mod+F6 exec /usr/bin/slack
 
-# Open Joplin
-bindsym $mod+F9 exec tilix
+# Open Nautilus
+bindsym $mod+F7 exec nautilus
 
 
 # kill focused window
@@ -168,10 +174,10 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+1 workspace 1:Shell
 bindsym $mod+2 workspace 2:Browser
 bindsym $mod+3 workspace 3:Code
-bindsym $mod+4 workspace 4:Files
+bindsym $mod+4 workspace 4:Unity
 bindsym $mod+5 workspace 5:Notes
 bindsym $mod+6 workspace 6:Slack
-bindsym $mod+7 workspace 7
+bindsym $mod+7 workspace 7:Files
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
@@ -180,10 +186,10 @@ bindsym $mod+0 workspace 10
 bindsym $mod+Shift+1 move container to workspace 1:Shell
 bindsym $mod+Shift+2 move container to workspace 2:Browser
 bindsym $mod+Shift+3 move container to workspace 3:Code
-bindsym $mod+Shift+4 move container to workspace 4:Files
+bindsym $mod+Shift+4 move container to workspace 4:Unity
 bindsym $mod+Shift+5 move container to workspace 5:Notes
 bindsym $mod+Shift+6 move container to workspace 6:Slack
-bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+7 move container to workspace 7:Files
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
