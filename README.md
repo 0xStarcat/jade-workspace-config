@@ -1,6 +1,31 @@
 # Workspace configs
 
+## Helpful things to install first
+
+1. Snap `sudo apt-get install snapd`
+2. LinuxBrew https://brew.sh/ `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+3. pyenv (python version manager), nvm (node version manager) `brew install pyenv && brew install nvm`
+4. rbenv https://github.com/rbenv/rbenv `brew install rbenv`
+5. npm & yarn `brew install npm && brew install yarn`
+6. docker
+
+```
+sudo addgroup --system docker
+sudo adduser $USER docker
+newgrp docker
+sudo snap install docker
+```
+
+## Generate a new RSA public key
+
+1. add it to github
+2. add it to digital ocean or any other hosting where u ssh
+
 ## Tilix https://gnunn1.github.io/tilix-web/
+
+```
+sudo apt-get install tilix
+```
 
 - to dump the tilix config to a file, run: `dconf dump /com/gexperts/Tilix/ > tilix.dconf`
 
@@ -8,7 +33,7 @@
 
 ## [Zsh](./zsh)
 
-- choose the appropriate zsh file (zshrc_mac for macosx zshrc for linux)
+- choose the appropriate zsh file (zshrc_mac for macosx zshrc for lizshnux)
 - clone `oh-my-zsh` into ~/.oh-my-zsh `mkdir ~/.oh-my-zsh && cd ~/.oh-my-zsh && git clone https://github.com/robbyrussell/oh-my-zsh`
 
 - install powerlevel10k zsh theme `git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k && echo 'source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme' >>! ~/.zshrc`
@@ -37,7 +62,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 echo "source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 ```
 
-- add command to tilix to start zsh on new shell in Preferences > Profile (defualt) > Command
+- add command to tilix to start zsh on new shell in Preferences > Profile (defualt) > Command `zsh`
 
 ## [i3 window manager](./i3)
 
@@ -53,6 +78,30 @@ echo "source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZD
 6. (linux) install light-locker `apt-get install light-locker`
 7. (linux) use feh for rotating wallpaper `apt-get install feh` with pictures in folder `~/Pictures/wallpapers` and hardlink `ln fehbg-rotate ~/.fehbg-rotate && chmod 777 ~/.fehbg-rotate`
 8. (linux) add `00_refresh_screen_on_thaw` script to `/etc/pm/sleep.d`
+
+## configure trackpad
+
+https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
+
+edit `/etc/X11/xorg.conf.d/90-touchpad.conf`
+
+```
+Section "InputClass"
+        Identifier "touchpad"
+        MatchIsTouchpad "on"
+        Driver "libinput"
+        # Option "Tapping" "on" # tap to click
+	      Option "ClickMethod" "clickfinger" # click anywhere you want
+        Option "TapButton1" "1"
+        Option "TapButton2" "2"
+        Option "TapButton3" "3"
+        Option "ClickFinger1" "1"
+        Option "ClickFinger2" "2"
+        Option "ClickFinger3" "3"
+
+EndSection
+
+```
 
 ## Backup / Restoring
 

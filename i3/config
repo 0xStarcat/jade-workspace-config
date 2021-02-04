@@ -81,7 +81,7 @@ bindsym $mod+z= exec vmg
 bindsym $mod+Return exec tilix
 
 # open
-bindsym $mod+F1 exec /usr/bin/bitwarden
+bindsym $mod+F1 exec bitwarden
 
 # open browser
 bindsym $mod+F2 mode "$browser_mode"
@@ -97,7 +97,7 @@ bindsym $mod+F4 exec /home/angel/Unity/Hub/Editor/2019.4.15f1/Editor/Unity
 bindsym $mod+F5 exec i3-msg "workspace 5:Notes"; exec tilix;
 
 # Open Slack
-bindsym $mod+F6 exec /usr/bin/slack
+bindsym $mod+F6 exec slack
 
 # Open Nautilus
 bindsym $mod+F7 exec nautilus

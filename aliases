@@ -218,8 +218,8 @@ function dkbimg() {
 }
 
 # -- Docker Containers
-alias dkconstop="docker stop $(docker ps -a -q)"
-alias dkconrm="docker rm $(docker ps -a -q)"
+# alias dkconstop="docker stop $(docker ps -a -q)"
+# alias dkconrm="docker rm $(docker ps -a -q)"
 alias dkcon="docker container"
 
 # -- Docker Volumes
