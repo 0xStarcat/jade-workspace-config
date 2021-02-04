@@ -15,7 +15,7 @@ font pango:monospace 14
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+# font pango:DejaVu Sans Mono 14
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -41,11 +41,11 @@ assign [class="Google-chrome"] 2:Browser
 assign [class="Tor"] 2:Browser
 assign [class="Atom"] 3:Code
 assign [class="Code"] 3:Code
-assign [class="Unity"] 4:Unity
 assign [class="Boostnote"] 5:Notes
 assign [class="Joplin"] 5:Notes
 assign [class="Slack"] 6:Slack
 assign [class="Nautilus"] 7:Files
+assign [class="Unity"] 9:Unity
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -63,7 +63,9 @@ exec --no-startup-id xss-lock i3exit lock
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
+# bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle
+
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
@@ -90,7 +92,7 @@ bindsym $mod+F2 mode "$browser_mode"
 bindsym $mod+F3 mode "$code_mode"
 
 # Open Unity
-bindsym $mod+F4 exec /home/angel/Unity/Hub/Editor/2019.4.15f1/Editor/Unity
+bindsym $mod+F9 exec /home/angel/Unity/Hub/Editor/2019.4.15f1/Editor/Unity
 
 # Open Notes
 # bindsym $mod+F5 exec boostnote
@@ -174,19 +176,19 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+1 workspace 1:Shell
 bindsym $mod+2 workspace 2:Browser
 bindsym $mod+3 workspace 3:Code
-bindsym $mod+4 workspace 4:Unity
+bindsym $mod+4 workspace 4:Code
 bindsym $mod+5 workspace 5:Notes
 bindsym $mod+6 workspace 6:Slack
 bindsym $mod+7 workspace 7:Files
 bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
+bindsym $mod+9 workspace 9:Unity
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1:Shell
 bindsym $mod+Shift+2 move container to workspace 2:Browser
 bindsym $mod+Shift+3 move container to workspace 3:Code
-bindsym $mod+Shift+4 move container to workspace 4:Unity
+bindsym $mod+Shift+4 move container to workspace 4:Code
 bindsym $mod+Shift+5 move container to workspace 5:Notes
 bindsym $mod+Shift+6 move container to workspace 6:Slack
 bindsym $mod+Shift+7 move container to workspace 7:Files
@@ -272,9 +274,10 @@ bar {
 
 bindsym Mod1+Control+Delete mode "$mode_system"
 
-set $mode_system System (Mod1+Control+Delete) Exit (L)ogout, (R)eboot, (Shift+S) Poweroff
+set $mode_system System (Mod1+Control+Delete) Exit (L)ogout, Loc(K), (R)eboot, (Shift+S) Poweroff
 # Create Log out, Reboot, Poweroff bindings
 mode "$mode_system" {
+        bindsym k mode "default" exec i3exit lock
         bindsym r exec systemctl reboot
         bindsym l exit
         bindsym Shift+S exec systemctl poweroff
@@ -284,6 +287,9 @@ mode "$mode_system" {
         bindsym Escape mode "default"
 }
 
+
+# colors
+client.focused #7bffb0 #7bffb0 #515151 #859900 
 
 
 #######################################################################
@@ -296,3 +302,5 @@ mode "$mode_system" {
 # Please remove the following exec line:
 #######################################################################
 exec i3-config-wizard
+
+

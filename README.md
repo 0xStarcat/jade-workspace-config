@@ -16,6 +16,8 @@ newgrp docker
 sudo snap install docker
 ```
 
+7. compton, xss-lock, feh-bg, xfce4-power-manager, xautolock
+
 ## Generate a new RSA public key
 
 1. add it to github
@@ -75,13 +77,18 @@ echo "source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZD
 3. (linux) hardlink compton.conf `ln .compton.conf ~/.compton.conf`
 4. (linux) add tilix config back in `dconf load /com/gexperts/Tilix/ < tilix.dconf`
 5. (linux) install "xfce4-power-manager" `apt-get install xfce4-power-manager`
-6. (linux) install light-locker `apt-get install light-locker`
+6. (linux) install light-locker `apt-get install light-locker` # changes login screen
 7. (linux) use feh for rotating wallpaper `apt-get install feh` with pictures in folder `~/Pictures/wallpapers` and hardlink `ln fehbg-rotate ~/.fehbg-rotate && chmod 777 ~/.fehbg-rotate`
-8. (linux) add `00_refresh_screen_on_thaw` script to `/etc/pm/sleep.d`
+<!-- 8. (linux) add `00_refresh_screen_on_thaw` script to `/etc/pm/sleep.d` -->
+8. create `~/.xinitrc` and add `exec i3` to it
+9. move `i3exit` to `/usr/local/bin/i3exit` and configure the path to the lock screen
+10. if backlight keys don't work, check if u have "intel_backlight" `ls /sys/class/backlight`. if you do, copy the xorg.conf file into `/etc/X11/xorg.conf`
 
 ## configure trackpad
 
 https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/
+
+- makes 2-finger clicks into right clicks
 
 edit `/etc/X11/xorg.conf.d/90-touchpad.conf`
 

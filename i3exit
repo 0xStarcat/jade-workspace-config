@@ -2,12 +2,12 @@
 # /usr/local/bin/i3exit
 
 lock() {
-    i3lock -i /home/angel/Pictures/broken-screen.png -p default -n -f -e
+    i3lock -i /home/lola/Pictures/lock-screen.png -p default -n -f -e
 }
 
 case "$1" in
     lock)
-        lock
+        i3lock -i /home/lola/Pictures/lock-screen.png -p default -n -f -e
         ;;
     logout)
         i3-msg exit

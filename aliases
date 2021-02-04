@@ -12,6 +12,7 @@ funtion tar() {
 
 alias audio=pavucontrol
 alias mixer=alsamixer -c 0
+alias bt="bluetoothctl"
 
 # Redis
 
@@ -75,10 +76,10 @@ function unmount_usb() {
   sudo umount "$1"
 }
 # Zsh
-alias subl="atom"
 alias .r=". ~/.zshrc"
 alias i3c="code ~/.config/i3/config"
-alias zshc="code ~/.zshrc"
+alias zshrc="code ~/.zshrc"
+alias audioc="sudo -H gedit /etc/pulse/default.pa"
 alias alic="code ~/.aliases"
 alias sources="sudo code /etc/apt"
 
