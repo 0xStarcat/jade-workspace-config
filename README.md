@@ -118,7 +118,9 @@ EndSection
 
 ```
 
-## Fixing headphones
+## Fixing headphones and audio
+
+LINUX AUDIO IS SO BAD AND EVERYONE IS SO UNHELPFUL. For now, run this command every time you restart: `alsactl restore`. use `alsamixer` if sound is coming out of both your headphones and speakers to mute one.
 
 https://askubuntu.com/questions/132440/headphone-jack-not-working
 

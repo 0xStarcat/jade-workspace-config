@@ -15,6 +15,16 @@ alias mixer=alsamixer -c 0
 alias bt="bluetoothctl"
 alias audio_fix="alsactl restore"
 
+# i3wm window manager
+
+alias 31="i3-msg workspace 31:3-1:Code A && code ."
+alias 32="i3-msg workspace 32:3-2:Code B && code ."
+alias 33="i3-msg workspace 33:3-3:Code C && code ."
+alias 34="i3-msg workspace 34:3-4:Code D && code ."
+alias 35="i3-msg workspace 35:3-5:Code E && code ."
+
+# vscode
+
 # Redis
 
 alias redis_stop="systemctl stop redis"

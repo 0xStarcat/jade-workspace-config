@@ -35,28 +35,28 @@ set $right l
 set $mod mod4
 
 # Specific Workspaces for applications
-assign [class="tilix"] 1:Shell
-assign [class="Firefox"] 2:Browser
-assign [class="Google-chrome"] 2:Browser
+assign [class="tilix"] 1:1:Terminal
+# assign [class="Google-chrome"] 21:2-1:Chrome
+assign [class="Firefox"] 23:2-3:Firefox
 assign [class="Tor"] 2:Browser
 assign [class="Atom"] 3:Code
-assign [class="Code"] 3:Code
-assign [class="Boostnote"] 5:Notes
-assign [class="Joplin"] 5:Notes
-assign [class="Slack"] 6:Slack
-assign [class="Nautilus"] 7:Files
+# assign [class="Code"] 31:3-1:Code A
+assign [class="Slack"] 51:5:Slack
 assign [class="Unity"] 9:Unity
+assign [class="Bitwarden"] 101:0-1:Bitwarden
+assign [class="Nautilus"] 102:0-2:Files
+assign [class="zoom"] 91:9:Zoom
+
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # workspace programs start
-exec --no-startup-id i3-msg 'workspace 1:Shell; exec tilix'
+exec --no-startup-id i3-msg 'workspace 1:1:Terminal; exec tilix'
 exec --no-startup-id compton --config ~/.compton.conf
 exec --no-startup-id ~/.fehbg-rotate
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xss-lock i3exit lock
-exec --no-startup-id alsactl restore # fix audio
 # keys for override logitech keyboard function keys
 # exec --no-startup-id i3-msg exec xmodmap "keycode 166 = F1"
 # exec --no-startup-id i3-msg exec xmodmap -e "keycode 180 = F2"
@@ -81,10 +81,10 @@ bindsym $mod+z exec xterm -e "atom ~/.i3/config"
 bindsym $mod+z= exec vmg
 
 # start a terminal
-bindsym $mod+Return exec tilix
+bindsym $mod+F1 workspace 1:1:Terminal; exec tilix
 
 # open
-bindsym $mod+F1 exec bitwarden
+bindsym $mod+F10 mode "$utility_mode"
 
 # open browser
 bindsym $mod+F2 mode "$browser_mode"
@@ -96,18 +96,20 @@ bindsym $mod+F3 mode "$code_mode"
 bindsym $mod+F9 exec /home/angel/Unity/Hub/Editor/2019.4.15f1/Editor/Unity
 
 # Open Notes
-# bindsym $mod+F5 exec boostnote
-bindsym $mod+F5 exec i3-msg "workspace 5:Notes"; exec tilix;
+bindsym $mod+F4 workspace 41:4:Notes;exec tilix -e joplin
 
 # Open Slack
-bindsym $mod+F6 exec slack
+bindsym $mod+F5 exec slack
 
 # Open Nautilus
 bindsym $mod+F7 exec nautilus
 
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Shift+q kill; workspace 1:1:Terminal
+
+bindsym $mod+shift+Tab workspace prev
+bindsym $mod+Tab workspace next
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
@@ -174,28 +176,117 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # switch to workspace
-bindsym $mod+1 workspace 1:Shell
-bindsym $mod+2 workspace 2:Browser
-bindsym $mod+3 workspace 3:Code
-bindsym $mod+4 workspace 4:Code
-bindsym $mod+5 workspace 5:Notes
-bindsym $mod+6 workspace 6:Slack
-bindsym $mod+7 workspace 7:Files
+bindsym $mod+1 workspace 1:1:Terminal
+# bindsym $mod+2 workspace 2:Browser
+bindsym $mod+2 mode "$workspace_browser_mode"
+# bindsym $mod+3 workspace 3:Code
+bindsym $mod+3 mode "$workspace_code_mode"
+bindsym $mod+4 workspace 41:4:Notes
+# bindsym $mod+5 workspace 51:5:Notes
+bindsym $mod+5 workspace 51:5:Slack
+bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9:Unity
-bindsym $mod+0 workspace 10
+bindsym $mod+9 workspace 91:9:Zoom
+# bindsym $mod+0 workspace 10
+bindsym $mod+0 mode "$workspace_utility_mode"
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1:Shell
-bindsym $mod+Shift+2 move container to workspace 2:Browser
-bindsym $mod+Shift+3 move container to workspace 3:Code
-bindsym $mod+Shift+4 move container to workspace 4:Code
-bindsym $mod+Shift+5 move container to workspace 5:Notes
-bindsym $mod+Shift+6 move container to workspace 6:Slack
+bindsym $mod+Shift+1 move container to workspace 1:1:Terminal
+# bindsym $mod+Shift+2 move container to workspace 2:Browser
+bindsym $mod+Shift+2 mode "$move_browser_mode"
+bindsym $mod+Shift+3 mode "$move_code_mode"
+# bindsym $mod+Shift+3 move container to workspace 3:Code
+bindsym $mod+Shift+4 move container to workspace 41:4:Notes
+# bindsym $mod+Shift+5 move container to workspace 5:Notes
+bindsym $mod+Shift+5 move container to workspace 51:5:Slack
 bindsym $mod+Shift+7 move container to workspace 7:Files
 bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+9 move container to workspace 91:9:Zoom
+# bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+3 mode "$move_utility_mode"
+
+set $workspace_browser_mode Browser Region: 1 2 3
+mode "$workspace_browser_mode" {
+  bindsym 1 workspace 21:2-1:Chrome; mode "default"
+  bindsym 2 workspace 22:2-2:Chrome(i); mode "default"
+  bindsym 3 workspace 23:2-3:Firefox; mode "default"
+
+  bindsym $mod+1 workspace 21:2-1:Chrome; mode "default"
+  bindsym $mod+2 workspace 22:2-2:Chrome(i); mode "default"
+  bindsym $mod+3 workspace 23:2-3:Firefox; mode "default"
+
+  bindsym Escape mode "default"
+}
+
+set $move_browser_mode Move to: 1 2 3
+mode "$move_browser_mode" {
+  bindsym 1 move container to workspace 21:2-1:Chrome; mode "default"
+  bindsym 2 move container to workspace 22:2-2:Chrome(i); mode "default"
+  bindsym 3 move container to workspace 23:2-3:Firefox; mode "default"
+
+  bindsym $mod+1 move container to workspace 21:2-1:Chrome; mode "default"
+  bindsym $mod+2 move container to workspace 22:2-2:Chrome(i); mode "default"
+  bindsym $mod+3 move container to workspace 23:2-3:Firefox; mode "default"
+
+  bindsym Escape mode "default"
+}
+
+set $workspace_code_mode Code Sector: 1 2 3 4 5
+mode "$workspace_code_mode" {
+  bindsym 1 workspace 31:3-1:Code A; mode "default"
+  bindsym 2 workspace 32:3-2:Code B; mode "default"
+  bindsym 3 workspace 33:3-3:Code C; mode "default"
+  bindsym 4 workspace 34:3-4:Code D; mode "default"
+  bindsym 5 workspace 35:3-5:Code E; mode "default"
+
+  bindsym $mod+1 workspace 31:3-1:Code A; mode "default"
+  bindsym $mod+2 workspace 32:3-2:Code B; mode "default"
+  bindsym $mod+3 workspace 33:3-3:Code C; mode "default"
+  bindsym $mod+4 workspace 34:3-4:Code D; mode "default"
+  bindsym $mod+5 workspace 35:3-5:Code E; mode "default"
+
+  bindsym Escape mode "default"
+}
+
+set $move_code_mode Move to: 1 2 3 4 5
+mode "$move_code_mode" {
+  bindsym 1 move container to workspace 31:3-1:Code A; mode "default"
+  bindsym 2 move container to workspace 32:3-2:Code B; mode "default"
+  bindsym 3 move container to workspace 33:3-3:Code C; mode "default"
+  bindsym 5 move container to workspace 34:3-4:Code D; mode "default"
+  bindsym 5 move container to workspace 35:3-5:Code E; mode "default"
+
+  bindsym $mod+1 move container to workspace 31:3-1:Code A; mode "default"
+  bindsym $mod+2 move container to workspace 32:3-2:Code B; mode "default"
+  bindsym $mod+3 move container to workspace 33:3-3:Code C; mode "default"
+  bindsym $mod+5 move container to workspace 34:3-4:Code D; mode "default"
+  bindsym $mod+5 move container to workspace 35:3-5:Code E; mode "default"
+
+  bindsym Escape mode "default"
+}
+
+set $workspace_utility_mode Utility District: 1 2
+mode "$workspace_utility_mode" {
+  bindsym 1 workspace 101:0-1:Bitwarden; mode "default"
+  bindsym 2 workspace 102:0-2:Files; mode "default"
+
+  bindsym $mod+1 workspace 101:0-1:Bitwarden; mode "default"
+  bindsym $mod+2 workspace 102:0-2:Files; mode "default"
+
+  bindsym Escape mode "default"
+}
+
+set $move_utility_mode Move to: 1 2
+mode "$move_utility_mode" {
+  bindsym 1 move container to workspace 101:0-1:Bitwarden; mode "default"
+  bindsym 2 move container to workspace 102:0-2:Files; mode "default"
+
+  bindsym $mod+1 move container to workspace 101:0-1:Bitwarden; mode "default"
+  bindsym $mod+2 move container to workspace 102:0-2:Files; mode "default"
+
+  bindsym Escape mode "default"
+}
+
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -203,6 +294,9 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+
+bindsym $mod+m mode "$display_mode"
 
 set $display_mode Display (1) HDMI, (2) Computer, (3) Both, (4) Extended
 mode "$display_mode" {
@@ -215,22 +309,30 @@ mode "$display_mode" {
   bindsym Escape mode "default"
 }
 
-bindsym $mod+m mode "$display_mode"
 
-set $code_mode Code (a) Atom, (c) Visual Studio
-mode "$code_mode" {
-  bindsym a exec atom .
-  bindsym c exec code .
+set $browser_mode Browser (f) Firefox, (c) Chrome
+mode "$browser_mode" {
+  bindsym c workspace 21:2-1:Chrome; exec google-chrome; mode "default"
+  bindsym shift+c workspace 22:2:Chrome(i); exec google-chrome -incognito;mode "default";
+  bindsym f workspace 23:2-3:Firefox; exec firefox -new-tab about:newtab; mode "default"
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
 
+set $code_mode Code (a) Atom, (c) Visual Studio
+mode "$code_mode" {
+  bindsym a exec atom .;mode "default"3
+  bindsym c workspace 31:3-1:Code A; exec code .;mode "default"
 
-set $browser_mode Browser (f) Firefox, (c) Chrome
-mode "$browser_mode" {
-  bindsym f exec firefox -new-tab about:newtab; mode "default"
-  bindsym c exec google-chrome; mode "default"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+set $utility_mode Utility (B)itwarden, (F)iles
+mode "$utility_mode" {
+  bindsym b exec bitwarden; mode "default"
+  bindsym f exec nautilus; mode "default"
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
@@ -268,6 +370,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+        strip_workspace_numbers yes
 }
 
 # Shutdown / Restart / Suspend computer
