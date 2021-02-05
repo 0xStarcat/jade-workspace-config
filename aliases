@@ -13,6 +13,7 @@ funtion tar() {
 alias audio=pavucontrol
 alias mixer=alsamixer -c 0
 alias bt="bluetoothctl"
+alias audio_fix="alsactl restore"
 
 # Redis
 

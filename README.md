@@ -16,7 +16,7 @@ newgrp docker
 sudo snap install docker
 ```
 
-7. compton, xss-lock, feh-bg, xfce4-power-manager, xautolock
+7. compton, xss-lock, feh-bg, xfce4-power-manager, xautolock, dconf-editor
 
 ## Generate a new RSA public key
 
@@ -80,9 +80,17 @@ echo "source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZD
 6. (linux) install light-locker `apt-get install light-locker` # changes login screen
 7. (linux) use feh for rotating wallpaper `apt-get install feh` with pictures in folder `~/Pictures/wallpapers` and hardlink `ln fehbg-rotate ~/.fehbg-rotate && chmod 777 ~/.fehbg-rotate`
 <!-- 8. (linux) add `00_refresh_screen_on_thaw` script to `/etc/pm/sleep.d` -->
-8. create `~/.xinitrc` and add `exec i3` to it
-9. move `i3exit` to `/usr/local/bin/i3exit` and configure the path to the lock screen
-10. if backlight keys don't work, check if u have "intel_backlight" `ls /sys/class/backlight`. if you do, copy the xorg.conf file into `/etc/X11/xorg.conf`
+8. copy over `~/.xinitrc`
+9. if backlight keys don't work, check if u have "intel_backlight" `ls /sys/class/backlight`. if you do, copy the xorg.conf file into `/etc/X11/xorg.conf`
+
+## Configure lock screen / suspend / power management
+
+https://bbs.archlinux.org/viewtopic.php?id=208875
+https://askubuntu.com/questions/1009387/laptop-doesnt-suspend-properly-on-closing-lid
+
+1. add a lock screen `.png` to `~/Pictures/lock-screen.png`
+2. move `i3exit` to `/usr/local/bin/i3exit` and configure the path to the lock screen
+3. configure with xfcd4-power-manager `xfce4-power-manager -c`
 
 ## configure trackpad
 
@@ -108,6 +116,14 @@ Section "InputClass"
 
 EndSection
 
+```
+
+## Fixing headphones
+
+https://askubuntu.com/questions/132440/headphone-jack-not-working
+
+```
+alsactl restore
 ```
 
 ## Backup / Restoring
