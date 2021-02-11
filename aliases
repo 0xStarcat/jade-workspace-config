@@ -17,11 +17,24 @@ alias audio_fix="alsactl restore"
 
 # i3wm window manager
 
-alias 31="i3-msg workspace 31:3-1:Code A && code ."
-alias 32="i3-msg workspace 32:3-2:Code B && code ."
-alias 33="i3-msg workspace 33:3-3:Code C && code ."
-alias 34="i3-msg workspace 34:3-4:Code D && code ."
-alias 35="i3-msg workspace 35:3-5:Code E && code ."
+alias 21="i3-msg workspace 21:2-1:Chrome"
+alias 22="i3-msg workspace 22:2-2:Chrome(i)"
+alias 23="i3-msg workspace 23:2-3:Firefox"
+
+
+alias 31="i3-msg workspace 31:3-1:Code A && code"
+alias 32="i3-msg workspace 32:3-2:Code B && code"
+alias 33="i3-msg workspace 33:3-3:Code C && code"
+alias 34="i3-msg workspace 34:3-4:Code D && code"
+alias 35="i3-msg workspace 35:3-5:Code E && code"
+
+alias 4="i3-msg workspace 41:4:Notes"
+alias 5="i3-msg workspace 51:5:Slack"
+alias 9="i3-msg workspace 91:9:Zoom"
+
+alias 01="i3-msg workspace 101:0-1:Bitwarden"
+alias 02="i3-msg workspace 102:0-2:Files"
+
 
 # vscode
 
@@ -206,7 +219,7 @@ function kbcs() {
 
 # Dropbox
 
-alias dropbox="~/.dropbox-dist/dropboxd"
+alias dropbox="/opt/dropbox/dropboxd"
 
 # Docker
 function dkc() {

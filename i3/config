@@ -40,7 +40,7 @@ assign [class="tilix"] 1:1:Terminal
 assign [class="Firefox"] 23:2-3:Firefox
 assign [class="Tor"] 2:Browser
 assign [class="Atom"] 3:Code
-# assign [class="Code"] 31:3-1:Code A
+assign [class="Arduino"] 41:4-Arduino
 assign [class="Slack"] 51:5:Slack
 assign [class="Unity"] 9:Unity
 assign [class="Bitwarden"] 101:0-1:Bitwarden
@@ -95,8 +95,12 @@ bindsym $mod+F3 mode "$code_mode"
 # Open Unity
 bindsym $mod+F9 exec /home/angel/Unity/Hub/Editor/2019.4.15f1/Editor/Unity
 
+# Open an IDE
+bindsym $mod+F4 mode "$ide_mode"
+
+
 # Open Notes
-bindsym $mod+F4 workspace 41:4:Notes;exec tilix -e joplin
+bindsym $mod+F6 workspace 61:6:Notes;exec tilix -e joplin
 
 # Open Slack
 bindsym $mod+F5 exec slack
@@ -106,7 +110,8 @@ bindsym $mod+F7 exec nautilus
 
 
 # kill focused window
-bindsym $mod+Shift+q kill; workspace 1:1:Terminal
+bindsym $mod+Shift+q kill;
+# bindsym $mod+Shift+q kill; workspace 1:1:Terminal
 
 bindsym $mod+shift+Tab workspace prev
 bindsym $mod+Tab workspace next
@@ -181,9 +186,9 @@ bindsym $mod+1 workspace 1:1:Terminal
 bindsym $mod+2 mode "$workspace_browser_mode"
 # bindsym $mod+3 workspace 3:Code
 bindsym $mod+3 mode "$workspace_code_mode"
-bindsym $mod+4 workspace 41:4:Notes
-# bindsym $mod+5 workspace 51:5:Notes
+bindsym $mod+4 mode "$workspace_ide_mode"
 bindsym $mod+5 workspace 51:5:Slack
+bindsym $mod+6 workspace 61:6:Notes
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 91:9:Zoom
@@ -195,15 +200,13 @@ bindsym $mod+Shift+1 move container to workspace 1:1:Terminal
 # bindsym $mod+Shift+2 move container to workspace 2:Browser
 bindsym $mod+Shift+2 mode "$move_browser_mode"
 bindsym $mod+Shift+3 mode "$move_code_mode"
-# bindsym $mod+Shift+3 move container to workspace 3:Code
-bindsym $mod+Shift+4 move container to workspace 41:4:Notes
-# bindsym $mod+Shift+5 move container to workspace 5:Notes
-bindsym $mod+Shift+5 move container to workspace 51:5:Slack
+bindsym $mod+Shift+4 mode "$move_ide_mode"
+bindsym $mod+Shift+6 move container to workspace 61:6:Notes
 bindsym $mod+Shift+7 move container to workspace 7:Files
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 91:9:Zoom
 # bindsym $mod+Shift+0 move container to workspace 10
-bindsym $mod+Shift+3 mode "$move_utility_mode"
+bindsym $mod+Shift+0 mode "$move_utility_mode"
 
 set $workspace_browser_mode Browser Region: 1 2 3
 mode "$workspace_browser_mode" {
@@ -265,6 +268,26 @@ mode "$move_code_mode" {
   bindsym Escape mode "default"
 }
 
+set $workspace_ide_mode IDE Selection: (A)rduino
+mode "$workspace_ide_mode" {
+  bindsym a workspace 41:4-Arduino; mode "default"
+  
+
+  bindsym $mod+a workspace 41:4-Arduino; mode "default"
+  
+
+  bindsym Escape mode "default"
+}
+
+set $move_ide_mode Move to: (A)rduino
+mode "$move_ide_mode" {
+  bindsym a move container to workspace 41:4-Arduino; mode "default"
+  
+  bindsym $mod+a move container to workspace 41:4-Arduino; mode "default"
+ 
+  bindsym Escape mode "default"
+}
+
 set $workspace_utility_mode Utility District: 1 2
 mode "$workspace_utility_mode" {
   bindsym 1 workspace 101:0-1:Bitwarden; mode "default"
@@ -322,8 +345,16 @@ mode "$browser_mode" {
 
 set $code_mode Code (a) Atom, (c) Visual Studio
 mode "$code_mode" {
-  bindsym a exec atom .;mode "default"3
+  bindsym a exec atom .;mode "default"
   bindsym c workspace 31:3-1:Code A; exec code .;mode "default"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+set $ide_mode Open IDE (A)rduino
+mode "$ide_mode" {
+  bindsym a workspace 41:4-Arduino; exec arduino;mode "default"
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
@@ -331,8 +362,8 @@ mode "$code_mode" {
 
 set $utility_mode Utility (B)itwarden, (F)iles
 mode "$utility_mode" {
-  bindsym b exec bitwarden; mode "default"
-  bindsym f exec nautilus; mode "default"
+  bindsym b workspace 101:0-1:bitwarden;exec bitwarden; mode "default"
+  bindsym f workspace 102:0-2:files;exec nautilus; mode "default"
 
   bindsym Return mode "default"
   bindsym Escape mode "default"
@@ -378,7 +409,7 @@ bar {
 
 bindsym Mod1+Control+Delete mode "$mode_system"
 
-set $mode_system System (Mod1+Control+Delete) Exit (L)ogout, (S)uspend, Loc(K), (R)eboot, (Shift+S) Poweroff
+set $mode_system System Exit (L)ogout, (S)uspend, Loc(K), (R)eboot, (Shift+S) Poweroff
 # Create Log out, Reboot, Poweroff bindings
 mode "$mode_system" {
         bindsym k mode "default" exec i3exit lock

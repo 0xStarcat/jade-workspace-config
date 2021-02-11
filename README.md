@@ -128,6 +128,36 @@ https://askubuntu.com/questions/132440/headphone-jack-not-working
 alsactl restore
 ```
 
+## Setup Dropbox
+
+https://www.linuxbabe.com/ubuntu/install-dropbox-headless-ubuntu-server
+
+1. wget "https://www.dropbox.com/download?plat=lnx.x86_64" -O dropbox-linux.tar.gz
+2. sudo mkdir /opt/dropbox/
+3. sudo tar xvf dropbox-linux.tar.gz --strip 1 -C /opt/dropbox
+4. sudo apt install libc6 libglapi-mesa libxdamage1 libxfixes3 libxcb-glx0 libxcb-dri2-0 libxcb-dri3-0 libxcb-present0 libxcb-sync1 libxshmfence1 libxxf86vm1
+5. /opt/dropbox/dropboxd
+6. sudo nano /etc/systemd/system/dropbox.service
+
+```
+[Unit]
+Description=Dropbox Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=lola
+ExecStart=/opt/dropbox/dropboxd
+ExecStop=/bin/kill -HUP $MAINPID
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+7. sudo systemctl start dropbox
+8. sudo systemctl enable dropbox
+
 ## Backup / Restoring
 
 https://www.linux.com/learn/full-metal-backup-using-dd-command
